@@ -27,3 +27,4 @@ class EditForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'class': 'form-control'}),
 
         }
+        
