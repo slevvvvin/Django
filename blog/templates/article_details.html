@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
     <h1>{{ post.title }}</h1>
     <small> By:
         {{ post.author.first_name}}
@@ -21,3 +22,23 @@
     <br/><br/>
     <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 {% endblock %}
+=======
+<h1>{{ post.title }}</h1>
+<small> By:
+    {{ post.author.first_name}}
+    {{ post.author.last_name}} -
+    {{ post.post_date }}
+    {% if user.is_authenticated %}
+        - <a href="{% url 'update_post' post.pk %}">(Edit)</a>
+        <a href="{% url 'delete_post' post.pk %}">(Delete)</a>
+    {% endif %}
+</small><br/>
+<hr>
+<br/>
+{{ post.body }}
+
+<br/><br/>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+{% endblock %}
+>>>>>>> fc22904904af5ea8bc2faaa7fdea0cbd2f78ec1d

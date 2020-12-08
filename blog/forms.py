@@ -37,4 +37,10 @@ class EditForm(forms.ModelForm):
             }),
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
+<<<<<<< HEAD
         }
+=======
+
+        }
+        
+>>>>>>> fc22904904af5ea8bc2faaa7fdea0cbd2f78ec1d
