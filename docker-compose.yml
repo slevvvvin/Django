@@ -1,4 +1,7 @@
 version: '3'
+volumes:
+ # static_wd volume will be mounted to both nginx and django gunicorn services.
+ static_volume:
 
 services:
   db:
@@ -11,6 +14,7 @@ services:
   web:
     build: .
     volumes:
+      - static_volume:/code/static
       - .:/code
     ports:
       - 8000:8000
