@@ -20,7 +20,7 @@ class HomeView(ListView):
         return context
 
 
-class CategoryView(ListView):
+class CategoryView(DetailView):
     model = Post
     template_name = 'categories.html'
 
