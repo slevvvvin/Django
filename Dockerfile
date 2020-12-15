@@ -1,4 +1,5 @@
 FROM python:3
+ENV PYTHONUNBUFFERED=1
 RUN bash -c 'mkdir -p /code/{static}'
 COPY . /code
 WORKDIR /code

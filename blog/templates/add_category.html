@@ -1,13 +1,12 @@
 {% extends 'base.html'   %}
 
 {% block title %}
-Create A New Category
+    Create A New Category
 {% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
     <h1>Add Category</h1>
-    <br/><br/>
     <div class="form-group">
         <form method="POST">
             {% csrf_token %}
@@ -16,6 +15,6 @@ Create A New Category
         </form>
     </div>
 {% else %}
-You're  not allowed here
+    You're  not allowed here
 {% endif %}
 {% endblock %}

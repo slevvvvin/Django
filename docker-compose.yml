@@ -1,35 +1,27 @@
 version: '3'
-volumes:
- # static volume will be mounted to both nginx and django gunicorn services.
- static_volume:
+#volumes:
+ # static_wd volume will be mounted to both nginx and django gunicorn services.
+# static:
  # mysql data volume will be mounted to mysql services
- data_volume:
+# data_volume:
 
 services:
   db:
     build: ./docker/mysql/
-    volumes:
-      - ./data_volume:/var/lib/mysql
+#    volumes:
+#      - ./data_volume:/var/lib/mysql
     restart: always
     env_file:
       - ./docker/mysql/db-environment.env
     ports:
       - 3306:3306
-  nginx:
-    build: ./docker/nginx/
-    ports:
-      - 8000:8000
-    volumes:
-      - static_volume:/code/static
-    depends_on:
-      - db
-    restart: always
   web:
     build: .
     volumes:
-      - static_volume:/code/static
-    expose:
-      - 8000
+#      - ./static:/code/static
+      - .:/code
+    ports:
+      - 8000:8000
     env_file:
       - .env
     depends_on:
