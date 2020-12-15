@@ -3,7 +3,7 @@ from .views import HomeView, PostDetailView, AddPostView, UpdatePostView,\
     DeletePostView, AddCategoryView, CategoryView, UserRegisterView
 
 urlpatterns = [
-    path('category/<int:pk>', CategoryView.as_view(), name='category'),
+    path('category/<int:pk>/', CategoryView.as_view(), name='category'),
     path('', HomeView.as_view(), name='home'),
     path('article/<int:pk>', PostDetailView.as_view(), name='post-detail'),
     path('add_post/', AddPostView.as_view(), name='add_post'),
