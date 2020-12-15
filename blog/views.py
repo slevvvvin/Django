@@ -14,9 +14,8 @@ class HomeView(ListView):
 
 # TODO: move outside
     def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
         context = super(HomeView, self).get_context_data()
-        context["cat_menu"] = cat_menu
+        context["category_list"] = Category.objects.all()
         return context
 
 
@@ -25,9 +24,9 @@ class CategoryView(DetailView):
     template_name = 'categories.html'
 
     def get_context_data(self, *args, **kwargs):
-        category_posts = Post.objects.filter(category=self.kwargs.get('pk'))
         context = super(CategoryView, self).get_context_data()
-        context["category_posts"] = category_posts
+        context["category_posts"] = Post.objects.filter(
+            category=self.kwargs.get('pk'))
         return context
 
 
@@ -37,9 +36,8 @@ class UserRegisterView(generic.CreateView):
     success_url = reverse_lazy('login')
 
     def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
         context = super(UserRegisterView, self).get_context_data()
-        context["cat_menu"] = cat_menu
+        context["category_list"] = Category.objects.all()
         return context
 
 
@@ -48,9 +46,8 @@ class PostDetailView(DetailView):
     template_name = 'post_details.html'
 
     def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
         context = super(PostDetailView, self).get_context_data()
-        context["cat_menu"] = cat_menu
+        context["category_list"] = Category.objects.all()
         return context
 
 
@@ -60,9 +57,8 @@ class AddPostView(CreateView):
     template_name = 'add_post.html'
 
     def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
         context = super(AddPostView, self).get_context_data()
-        context["cat_menu"] = cat_menu
+        context["category_list"] = Category.objects.all()
         return context
 
 
@@ -72,9 +68,8 @@ class AddCategoryView(CreateView):
     fields = '__all__'
 
     def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
         context = super(AddCategoryView, self).get_context_data()
-        context["cat_menu"] = cat_menu
+        context["category_list"] = Category.objects.all()
         return context
 
 
@@ -84,9 +79,8 @@ class UpdatePostView(UpdateView):
     template_name = 'update_post.html'
 
     def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
         context = super(UpdatePostView, self).get_context_data()
-        context["cat_menu"] = cat_menu
+        context["category_list"] = Category.objects.all()
         return context
 
 
@@ -96,7 +90,6 @@ class DeletePostView(DeleteView):
     success_url = reverse_lazy('home')
 
     def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
         context = super(DeletePostView, self).get_context_data()
-        context["cat_menu"] = cat_menu
+        context["category_list"] = Category.objects.all()
         return context

@@ -20,13 +20,13 @@
           </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            {% if cat_menu %}
+            {% if category_list %}
              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Categories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% for item in cat_menu %}
+                        {% for item in category_list %}
                     <a class="dropdown-item" href="{% url 'category' item.pk %}">
                         {{ item }}
                         </a>
