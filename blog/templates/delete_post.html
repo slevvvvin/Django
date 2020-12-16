@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
+{% if user.is_superuser %}
     <h1>Delete Post</h1>
     <br/><br/>
     <h3>Delete: {{ post.title }}</h3>
