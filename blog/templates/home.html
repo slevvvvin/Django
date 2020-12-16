@@ -14,7 +14,6 @@
             - <a href="{% url 'update_post' post.pk %}">(Edit)</a>
             <a href="{% url 'delete_post' post.pk %}">(Delete)</a>
         {% endif %}
-        <br/>
         <div class = "post_body">
             {{ post.body }}
         </div>
