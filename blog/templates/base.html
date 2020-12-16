@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+{% load category_list %}
 {% load static %}
   <head>
     <meta charset="utf-8">
@@ -20,20 +21,14 @@
           </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            {% if category_list %}
              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Categories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% for item in category_list %}
-                    <a class="dropdown-item" href="{% url 'category' item.pk %}">
-                        {{ item }}
-                        </a>
-                    {% endfor %}
+                    {% get_category_list %}
                 </div>
               </li>
-            {% endif %}
             {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                     <li class="nav-item">
