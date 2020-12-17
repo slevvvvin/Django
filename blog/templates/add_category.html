@@ -10,5 +10,9 @@
             <button class="btn btn-secondary">Add Category</button>
         </form>
     </div>
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById("admin").value = name;
+    </script>
 {% endif %}
 {% endblock %}

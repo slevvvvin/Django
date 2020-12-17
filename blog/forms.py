@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Category
 
 
 class PostForm(forms.ModelForm):
@@ -12,7 +12,10 @@ class PostForm(forms.ModelForm):
                 'placeholder': 'write title here'
             }),
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.Select(attrs={'class': 'form-control'}),
+            'author': forms.TextInput(attrs={'class': 'form-control',
+                                             'value': '',
+                                             'id': 'admin',
+                                             'type': 'hidden'}),
             'category': forms.Select(attrs={
                 'class': 'form-control'
             }),
@@ -31,4 +34,17 @@ class EditForm(forms.ModelForm):
             }),
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
+        }
+
+
+class AddCategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'author': forms.TextInput(attrs={'class': 'form-control',
+                                             'value': '',
+                                             'id': 'admin',
+                                             'type': 'hidden'}),
         }

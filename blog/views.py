@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView, \
    CreateView, UpdateView, DeleteView
 from .models import Post, Category
-from .forms import PostForm, EditForm
+from .forms import PostForm, EditForm, AddCategoryForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
@@ -43,8 +43,8 @@ class AddPostView(CreateView):
 
 class AddCategoryView(CreateView):
     model = Category
+    form_class = AddCategoryForm
     template_name = 'add_category.html'
-    fields = '__all__'
 
 
 class UpdatePostView(UpdateView):
