@@ -13,8 +13,7 @@ class PostForm(forms.ModelForm):
             }),
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.TextInput(attrs={'class': 'form-control',
-                                             'value': '',
-                                             'id': 'admin',
+                                             'value': '1',
                                              'type': 'hidden'}),
             'category': forms.Select(attrs={
                 'class': 'form-control'
@@ -44,7 +43,6 @@ class AddCategoryForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.TextInput(attrs={'class': 'form-control',
-                                             'value': '',
-                                             'id': 'admin',
+                                             'value': '1',
                                              'type': 'hidden'}),
         }
