@@ -27,3 +27,9 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('home')
+
+    def save(self, *args, **kwargs):
+        superuser_id = User.objects.filter(is_superuser=True).values('id')
+        self.author_id = superuser_id
+        return super(Post, self).save(*args, **kwargs)
+
