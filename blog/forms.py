@@ -36,10 +36,7 @@ class EditForm(forms.ModelForm):
 class AddCategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ('name',)
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.TextInput(attrs={'class': 'form-control',
-                                             'value': '1',
-                                             'type': 'hidden'}),
         }
