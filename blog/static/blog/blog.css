@@ -6,15 +6,15 @@
 }
 
 .post_body {
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    width:500px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 500px;
     margin: 10px 0 10px;
 }
 
 .btn-secondary{
-    margin-top:20px;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 

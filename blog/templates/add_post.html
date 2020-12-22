@@ -2,7 +2,11 @@
 
 {% block content %}
 {% if user.is_superuser %}
-    <div class="text title"><h1>Add Post</h1></div>
+    <div class="text title">
+        <h1>
+            Add Post
+        </h1>
+    </div>
     <div class="form-group">
         <form method="POST">
             {% csrf_token %}

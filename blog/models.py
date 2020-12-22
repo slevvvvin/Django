@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from myDjangoBlog import settings
 
 
 class Category(models.Model):
@@ -34,6 +35,8 @@ class Post(models.Model):
         return reverse('home')
 
     def save(self, *args, **kwargs):
-        superuser_id = User.objects.filter(is_superuser=True).values('id')
+        superuser_id = User.objects.filter(is_superuser=True,
+                                           username=settings.SUPERUSER_NAME
+                                           ).values('id')
         self.author_id = superuser_id
         return super(Post, self).save(*args, **kwargs)
