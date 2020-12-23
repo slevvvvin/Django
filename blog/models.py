@@ -15,7 +15,7 @@ class Category(models.Model):
         return reverse('home')
 
     def save(self, *args, **kwargs):
-        self.author_id = Superuser.get_superuser_id()
+        self.author_id = CustomUser.get_superuser_id()
         return super(Category, self).save(*args, **kwargs)
 
 
@@ -34,11 +34,11 @@ class Post(models.Model):
         return reverse('home')
 
     def save(self, *args, **kwargs):
-        self.author_id = Superuser.get_superuser_id()
+        self.author_id = CustomUser.get_superuser_id()
         return super(Post, self).save(*args, **kwargs)
 
 
-class Superuser(User):
+class CustomUser(User):
     class Meta:
         proxy = True
 
