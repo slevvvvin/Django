@@ -120,3 +120,5 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'home'
+
+SUPERUSER_NAME = 'admin'

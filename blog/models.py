@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.conf import settings
 
 
 class Category(models.Model):
@@ -12,6 +13,10 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('home')
+
+    def save(self, *args, **kwargs):
+        self.author_id = CustomUser.get_superuser_id()
+        return super(Category, self).save(*args, **kwargs)
 
 
 class Post(models.Model):
@@ -27,3 +32,20 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('home')
+
+    def save(self, *args, **kwargs):
+        self.author_id = CustomUser.get_superuser_id()
+        return super(Post, self).save(*args, **kwargs)
+
+
+class CustomUser(User):
+    class Meta:
+        proxy = True
+
+    @staticmethod
+    def get_superuser_id():
+        superuser_id = User.objects.filter(
+                                            is_superuser=True,
+                                            username=settings.SUPERUSER_NAME
+                                                ).values('id')
+        return superuser_id

@@ -1,0 +1,9 @@
+<ul>
+    <li>
+        {% for item in category_list %}
+            <a class="dropdown-item" href="{% url 'category' item.pk %}">
+             {{ item }}
+            </a>
+        {% endfor %}
+    </li>
+</ul>
