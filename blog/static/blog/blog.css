@@ -25,8 +25,9 @@
 .text {
     padding: 10px;
 }
+
 .title{
-    background-color: #efe635;
+    background-color: #7c35ef;
     color: white;
     font-size: 80px;
 }

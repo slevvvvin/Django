@@ -15,10 +15,7 @@ class Category(models.Model):
         return reverse('home')
 
     def save(self, *args, **kwargs):
-        superuser_id = User.objects.filter(is_superuser=True,
-                                           username=settings.SUPERUSER_NAME
-                                           ).values('id')
-        self.author_id = superuser_id
+        self.author_id = Superuser.get_superuser_id()
         return super(Category, self).save(*args, **kwargs)
 
 
@@ -37,8 +34,18 @@ class Post(models.Model):
         return reverse('home')
 
     def save(self, *args, **kwargs):
-        superuser_id = User.objects.filter(is_superuser=True,
-                                           username=settings.SUPERUSER_NAME
-                                           ).values('id')
-        self.author_id = superuser_id
+        self.author_id = Superuser.get_superuser_id()
         return super(Post, self).save(*args, **kwargs)
+
+
+class Superuser(User):
+    class Meta:
+        proxy = True
+
+    @staticmethod
+    def get_superuser_id():
+        superuser_id = User.objects.filter(
+                                            is_superuser=True,
+                                            username=settings.SUPERUSER_NAME
+                                                ).values('id')
+        return superuser_id
