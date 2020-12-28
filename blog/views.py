@@ -1,5 +1,5 @@
-from django.views.generic import ListView, DetailView, \
-   CreateView, UpdateView, DeleteView
+from django.views.generic import (ListView, DetailView, CreateView, UpdateView,
+                                  DeleteView)
 from .models import Post, Category, Comment
 from .forms import PostForm, EditForm, AddCategoryForm, AddCommentForm
 from django.urls import reverse_lazy
@@ -63,7 +63,10 @@ class AddCommentView(CreateView):
     model = Comment
     form_class = AddCommentForm
     template_name = 'add_comment.html'
-    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        current_post_id = self.kwargs['pk']
+        return reverse_lazy('post-detail', kwargs={'pk': current_post_id})
 
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']

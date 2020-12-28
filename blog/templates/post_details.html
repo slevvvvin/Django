@@ -15,18 +15,16 @@
         {{ post.body|safe }}
     </div>
     <h2>Comments</h2>
-    {% if not post.comments.all %}
+    {% for comment in post.comments.all %}
+        <strong>
+                {{ comment.author }} -
+                {{ comment.date_added }}
+        </strong>
+        {{ comment.body }}
+        <hr>
+    {% empty %}
         No comments yet...
-    {% else %}
-        {% for comment in post.comments.all %}
-            <strong>
-                    {{ comment.author }} -
-                    {{ comment.date_added }}
-            </strong>
-            {{ comment.body }}
-            <hr>
-        {% endfor %}
-    {% endif %}
+    {% endfor %}
     {% if user.is_authenticated %}
         <a href="{% url 'add_comment' post.pk %}">Add comment</a>
     {% endif %}
