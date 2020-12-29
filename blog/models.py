@@ -38,6 +38,17 @@ class Post(models.Model):
         return super(Post, self).save(*args, **kwargs)
 
 
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name='comments',
+                             on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    body = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.post.title, self.author)
+
+
 class CustomUser(User):
     class Meta:
         proxy = True

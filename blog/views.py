@@ -1,7 +1,7 @@
-from django.views.generic import ListView, DetailView, \
-   CreateView, UpdateView, DeleteView
-from .models import Post, Category
-from .forms import PostForm, EditForm, AddCategoryForm
+from django.views.generic import (ListView, DetailView, CreateView, UpdateView,
+                                  DeleteView)
+from .models import Post, Category, Comment
+from .forms import PostForm, EditForm, AddCategoryForm, AddCommentForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
@@ -57,3 +57,18 @@ class DeletePostView(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home')
+
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = AddCommentForm
+    template_name = 'add_comment.html'
+
+    def get_success_url(self):
+        current_post_id = self.kwargs['pk']
+        return reverse_lazy('post-detail', kwargs={'pk': current_post_id})
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        form.instance.author_id = self.request.user.id
+        return super().form_valid(form)
