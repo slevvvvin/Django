@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +125,8 @@ LOGOUT_REDIRECT_URL = 'home'
 SUPERUSER_NAME = 'admin'
 
 AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'blog.authentication.EmailAuthBackend',
     'social_core.backends.google.GoogleOAuth2',
 )
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '599560653645-o1oflg2v7iisnkeghvpi6hquibf8m897.apps.googleusercontent.com'
