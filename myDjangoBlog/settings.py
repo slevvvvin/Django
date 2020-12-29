@@ -24,7 +24,7 @@ SECRET_KEY = 'eo9)ee!&179f+7$qwk7kf)_7!u(ztk$iq*8+xooc#7(of*b@_a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['slevin-blog.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -122,3 +122,10 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 SUPERUSER_NAME = 'admin'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+)
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '599560653645-o1oflg2v7iisnkeghvpi6hquibf8m897.apps.googleusercontent.com'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'mtST8ejVUYujfvHjuxWNhQkp'
