@@ -24,7 +24,7 @@ SECRET_KEY = 'eo9)ee!&179f+7$qwk7kf)_7!u(ztk$iq*8+xooc#7(of*b@_a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['slevin-blog.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['slevin-blog.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -132,4 +132,4 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('GOOGLE_KEY')
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'mtST8ejVUYujfvHjuxWNhQkp'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('GOOGLE_SECRET')
