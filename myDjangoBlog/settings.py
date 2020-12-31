@@ -129,6 +129,7 @@ AUTHENTICATION_BACKENDS = (
     'blog.authentication.EmailAuthBackend',
     'social_core.backends.google.GoogleOAuth2',
 )
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '599560653645-o1oflg2v7iisnkeghvpi6hquibf8m897.apps.googleusercontent.com'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('GOOGLE_KEY')
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'mtST8ejVUYujfvHjuxWNhQkp'
