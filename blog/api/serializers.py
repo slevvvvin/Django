@@ -6,7 +6,7 @@ class PostListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ("title", "id", "category", "body")
+        fields = ("title", "id", "category", "body",)
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
@@ -30,3 +30,4 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
+
