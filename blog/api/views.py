@@ -1,8 +1,8 @@
-from rest_framework.response import Response
 from .serializers import PostListSerializer, PostDetailSerializer, \
     CategoryListSerializer
 from blog.models import Post, Category
 from rest_framework import generics
+from rest_framework.response import Response
 
 
 class PostListAPIView(generics.ListCreateAPIView):
