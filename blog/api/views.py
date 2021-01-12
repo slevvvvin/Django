@@ -3,6 +3,7 @@ from .serializers import PostListSerializer, PostDetailSerializer, \
 from blog.models import Post, Category
 from rest_framework import generics
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 class PostListAPIView(generics.ListCreateAPIView):
@@ -15,6 +16,14 @@ class PostDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostDetailSerializer
 
 
+class PostListByCategory(APIView):
+    @staticmethod
+    def get(request, pk):
+        posts = Post.objects.filter(category_id=pk)
+        serializer = PostListSerializer(posts, many=True)
+        return Response(serializer.data)
+
+
 class CategoryListAPIView(generics.ListCreateAPIView):
 
     queryset = Category.objects.all()
@@ -25,9 +34,3 @@ class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Category.objects.all()
     serializer_class = CategoryListSerializer
-
-    @staticmethod
-    def get(request, pk):
-        posts = Post.objects.filter(category_id=pk)
-        serializer = PostListSerializer(posts, many=True)
-        return Response(serializer.data)
