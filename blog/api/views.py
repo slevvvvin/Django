@@ -4,11 +4,13 @@ from blog.models import Post, Category
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 
 class PostListAPIView(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostListSerializer
+    permission_classes = [IsAdminUser]
 
 
 class PostDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
