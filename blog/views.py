@@ -1,19 +1,17 @@
-from django.views.generic import (ListView, DetailView, CreateView, UpdateView,
-                                  DeleteView)
 from .models import Post, Category, Comment
-from .forms import PostForm, EditForm, AddCategoryForm, AddCommentForm
+from blog import forms
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 
 
-class HomeView(ListView):
+class HomeView(generic.ListView):
     model = Post
     template_name = 'home.html'
     ordering = ['-post_date']
 
 
-class CategoryView(DetailView):
+class CategoryView(generic.DetailView):
     model = Post
     template_name = 'categories.html'
 
@@ -30,38 +28,38 @@ class UserRegisterView(generic.CreateView):
     success_url = reverse_lazy('login')
 
 
-class PostDetailView(DetailView):
+class PostDetailView(generic.DetailView):
     model = Post
     template_name = 'post_details.html'
 
 
-class AddPostView(CreateView):
+class AddPostView(generic.CreateView):
     model = Post
-    form_class = PostForm
+    form_class = forms.PostForm
     template_name = 'add_post.html'
 
 
-class AddCategoryView(CreateView):
+class AddCategoryView(generic.CreateView):
     model = Category
-    form_class = AddCategoryForm
+    form_class = forms.AddCategoryForm
     template_name = 'add_category.html'
 
 
-class UpdatePostView(UpdateView):
+class UpdatePostView(generic.UpdateView):
     model = Post
-    form_class = EditForm
+    form_class = forms.EditForm
     template_name = 'update_post.html'
 
 
-class DeletePostView(DeleteView):
+class DeletePostView(generic.DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home')
 
 
-class AddCommentView(CreateView):
+class AddCommentView(generic.CreateView):
     model = Comment
-    form_class = AddCommentForm
+    form_class = forms.AddCommentForm
     template_name = 'add_comment.html'
 
     def get_success_url(self):
