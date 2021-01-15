@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework import permissions
 
 
-class PostListAPIView(mixins.ListModelMixin, generics.GenericAPIView):
+class PostListView(mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Post.objects.all()
     serializer_class = serializers.PostListSerializer
 
@@ -14,7 +14,7 @@ class PostListAPIView(mixins.ListModelMixin, generics.GenericAPIView):
         return self.list(request, *args, **kwargs)
 
 
-class PostDetailAPIView(mixins.RetrieveModelMixin, generics.GenericAPIView):
+class PostDetailView(mixins.RetrieveModelMixin, generics.GenericAPIView):
     queryset = Post.objects.all()
     serializer_class = serializers.PostDetailSerializer
 
@@ -22,7 +22,7 @@ class PostDetailAPIView(mixins.RetrieveModelMixin, generics.GenericAPIView):
         return self.retrieve(request, *args, **kwargs)
 
 
-class PostCreateAPIView(mixins.CreateModelMixin, generics.GenericAPIView):
+class PostCreateView(mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Post.objects.all()
     serializer_class = serializers.PostListSerializer
     permission_classes = [permissions.IsAdminUser]
@@ -31,15 +31,20 @@ class PostCreateAPIView(mixins.CreateModelMixin, generics.GenericAPIView):
         return self.create(request, *args, **kwargs)
 
 
-class PostPutDeleteAPIView(mixins.UpdateModelMixin,
-                           mixins.DestroyModelMixin,
-                           generics.GenericAPIView):
+class PostUpdateView(mixins.UpdateModelMixin, generics.GenericAPIView):
     queryset = Post.objects.all()
     serializer_class = serializers.PostDetailSerializer
     permission_classes = [permissions.IsAdminUser]
 
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+
+
+class PostDeleteView(mixins.DestroyModelMixin,
+                     generics.GenericAPIView):
+    queryset = Post.objects.all()
+    serializer_class = serializers.PostDetailSerializer
+    permission_classes = [permissions.IsAdminUser]
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
@@ -53,7 +58,7 @@ class PostListByCategory(APIView):
         return Response(serializer.data)
 
 
-class CategoryListAPIView(mixins.ListModelMixin, generics.GenericAPIView):
+class CategoryListView(mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Category.objects.all()
     serializer_class = serializers.CategoryListSerializer
 
@@ -61,7 +66,7 @@ class CategoryListAPIView(mixins.ListModelMixin, generics.GenericAPIView):
         return self.list(request, *args, **kwargs)
 
 
-class CategoryDetailAPIView(mixins.RetrieveModelMixin, generics.GenericAPIView):
+class CategoryDetailView(mixins.RetrieveModelMixin, generics.GenericAPIView):
     queryset = Category.objects.all()
     serializer_class = serializers.CategoryListSerializer
 
@@ -69,7 +74,7 @@ class CategoryDetailAPIView(mixins.RetrieveModelMixin, generics.GenericAPIView):
         return self.retrieve(request, *args, **kwargs)
 
 
-class CategoryCreateAPIView(mixins.CreateModelMixin, generics.GenericAPIView):
+class CategoryCreateView(mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Category.objects.all()
     serializer_class = serializers.CategoryListSerializer
     permission_classes = [permissions.IsAdminUser]
@@ -78,15 +83,20 @@ class CategoryCreateAPIView(mixins.CreateModelMixin, generics.GenericAPIView):
         return self.create(request, *args, **kwargs)
 
 
-class CategoryPutDeleteAPIView(mixins.UpdateModelMixin,
-                               mixins.DestroyModelMixin,
-                               generics.GenericAPIView):
+class CategoryUpdateView(mixins.UpdateModelMixin, generics.GenericAPIView):
     queryset = Category.objects.all()
     serializer_class = serializers.CategoryListSerializer
     permission_classes = [permissions.IsAdminUser]
 
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+
+
+class CategoryDeleteView(mixins.DestroyModelMixin,
+                         generics.GenericAPIView):
+    queryset = Category.objects.all()
+    serializer_class = serializers.CategoryListSerializer
+    permission_classes = [permissions.IsAdminUser]
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
