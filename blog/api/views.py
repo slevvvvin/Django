@@ -1,9 +1,9 @@
-from blog.api import serializers
-from blog.models import Post, Category
 from rest_framework import generics, mixins
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import permissions
+from blog.api import serializers
+from blog.models import Post, Category
 
 
 class PostListView(mixins.ListModelMixin, generics.GenericAPIView):

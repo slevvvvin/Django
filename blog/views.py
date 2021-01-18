@@ -1,8 +1,8 @@
-from .models import Post, Category, Comment
-from blog import forms
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
+from blog import forms
+from .models import Post, Category, Comment
 
 
 class HomeView(generic.ListView):
