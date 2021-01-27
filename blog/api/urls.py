@@ -9,7 +9,7 @@ router.register('categories', views.CategoryView)
 
 urlpatterns = [
     path('posts/category/<int:pk>', views.PostListByCategory.as_view()),
-    path('token', TokenObtainPairView.as_view()),
+    path('token', TokenObtainPairView.as_view(), name='token'),
     path('token/refresh', TokenRefreshView.as_view()),
     path('', include(router.urls)),
 ]
